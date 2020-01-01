@@ -62,7 +62,6 @@ func encryption(encrypt bool, key []byte, message string) (result string) {
         stream := cipher.NewCFBEncrypter(block, iv)
         stream.XORKeyStream(cipherText[aes.BlockSize:], plainText)
         result = base64.URLEncoding.EncodeToString(cipherText)
-
     } else {
         cipherText, err := base64.URLEncoding.DecodeString(message)
         if err != nil {
