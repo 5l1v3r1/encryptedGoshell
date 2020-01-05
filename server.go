@@ -40,6 +40,7 @@ func main() {
             dec_output := encryption(false, key, string(enc_output))
             green.Println(string(dec_output))
         }
+
     }
 }
 
@@ -78,5 +79,6 @@ func encryption(encrypt bool, key []byte, message string) (result string) {
         stream.XORKeyStream(cipherText, cipherText)
         result = string(cipherText)
     }
+
     return
 }
