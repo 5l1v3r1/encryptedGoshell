@@ -11,5 +11,5 @@ admin@local:~$ go get github.com/fatih/color
 ```
 admin@local:~$ set GOARCH=386
 admin@local:~$ go build server.go
-admin@local:~$ build shell.go
+admin@local:~$ go build shell.go
 ```
